@@ -1,0 +1,110 @@
+@media (max-width: 960px) {
+    #glo-header{
+        height: 110px;
+    }
+    #glo-header .header-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #glo-header .sea-btn-warpper {
+        display: flex;
+        flex-flow: row-reverse;
+    }
+
+    #glo-header .logo-tap-wrapper{
+        display: flex;
+        flex-flow: row-reverse;
+        width: 80%;
+        align-content: center;
+        justify-content: space-between;
+    }
+
+    #glo-header .logo-wrapper{
+        width: 20%;
+    }
+
+    #glo-header .icon-wrapper{
+        height: 100%;
+        width: 60%;
+    }
+
+    #glo-header .icon-wrapper ul li span{
+        /* display: none; */
+    }
+    #glo-header .icon-wrapper ul li label{
+        width:100%;
+    }
+    #glo-header .other-wrapper .profile{
+        display: none;
+    }
+    #glo-header .other-wrapper .ask-btn{
+        width: 100%
+    }
+
+    #form-container{
+        margin-top: 150px;
+        margin-bottom:  50px;
+    }
+
+    #form-container .login-page{
+        width: 60%
+    }
+    .form-login{
+        max-width: 600px;
+    }
+    #glo-search{
+        height: 74%;
+        border-radius: 25px;
+    }
+    #glo-header .logo-wrapper .logo{
+        background-size: 80% auto;
+    }
+    #glo-header .other-wrapper .ask-btn .add-que-btn{
+        height: 40px;
+    }
+    .form-login{
+        transform: scale(1.45, 1.45);
+        transform-origin: center;
+    }
+    
+    
+    /*  Home */
+    #glo-container{
+        margin-top: 79px;
+    }
+    .float-image{
+        width: 150px;
+        height: 250px;
+        margin-top: -130px;
+    }
+    #add-que-tip .image img,
+    #ans-que-tip .image img
+    {
+        width: 300px;
+    }
+    #glo-footer .content .right .logo{
+        display: none;
+    }
+    #glo-footer .content .mid .e-cell{
+        display: none;
+    }
+    
+    
+    /* User Home*/
+    #left-col{
+        display: none;
+    }
+    #right-col{
+        display: none;
+    }
+    #mid-col{
+        width: 96%;
+        margin: auto;
+    }
+    
+    #mid-col .mid-unit{
+        margin: 5px 0px;
+    }
+}
