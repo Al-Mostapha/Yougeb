@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/signup', [SignupController::class, "index"])->name('signup');
+Route::view('/signup', "signup")->name('signup');
+Route::view('/login', "login")->name('login');
+Route::get("/@{mentionName}", [UserController::class, "index"]);

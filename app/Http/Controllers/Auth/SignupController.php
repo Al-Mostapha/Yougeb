@@ -9,7 +9,9 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SignupController extends Controller
 {
@@ -37,43 +39,42 @@ class SignupController extends Controller
     {
         return Validator::make($data, [
             'userName' => ['required', 'string', 'max:36', 'min:3'],
-            'userMail' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'userpass' => ['required', 'string', 'min:8', 'confirmed'],
+            'userMail' => ['required', 'string', 'email', 'max:255', 'unique:q_user,email'],
+            'userPass' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
     protected function create(Request $request)
     {
-        //$this->validator($request->all())->validate();
         $data = $request->all();
-
+        $this->validator($data)->validate();
         $ip = $request->ip();
         $MentionName = $this->extractMentionName($data['userName']);
         $idUrl = $MentionName;
-        $EncPass = Hash::make($data['userpass']);
-        $Md5Pass = md5($data['userpass']);
+        $EncPass = Hash::make($data['userPass']);
+        $Md5Pass = md5($data['userPass']);
         
         $user = User::create([
+          "id_user" => Str::orderedUuid(),
           'id_url' => $idUrl, "mention_name" => $MentionName, 
           "full_name" => $data['userName'], "email" => $data['userMail'], 
           "enc_pass" => $EncPass, "md5_pass" => $Md5Pass, 
-          "image" => $this->defaultImage[rand(1, 30)]
+          "image" => $this->defaultImage[rand(0, 29)]
         ]);
-        SignupIP::create(["id_user"=>$user->id, "ipAdd"=>$ip]);
-        return  redirect()->route("/@$MentionName");
+        Log::info(json_encode($user));
+        SignupIP::create(["id_user"=>$user->id_user, "ipAdd"=>$ip]);
+        return  [
+          "state" => "ok",
+          "user_name" => $MentionName
+        ];
     }
-
   public function extractMentionName(string $UserName){
     $canditate =  preg_replace('~[^\\pL0-9_]+~u', ' ', $UserName); 
-    $count = User::where('mention_name', 'like', $canditate)->count();
+    $count = User::where('mention_name', '=', $canditate)->count();
     if($count == 0){
       return $canditate ;
     }else{
-      return $canditate."-".$count;
+      return $this->extractMentionName($canditate."-".$count);
     }
-  }
-
-  public function index(Request $request){
-    return view('signup');
   }
 }

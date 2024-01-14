@@ -18,23 +18,23 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_user',
-        `id_url`,
-        `mention_name`,
-        `full_name`,
-        `brief`,
-        `user_group`,
-        `email`,
-        `enc_pass`,
-        `md5_pass`,
-        `image`,
-        `following`,
-        `follower`,
-        `score` ,
-        `question`,
-        `answers`,
-        `article`,
-        `remember_token`
+        "id_user",
+        "id_url",
+        "mention_name",
+        "full_name",
+        "brief",
+        "user_group",
+        "email",
+        "enc_pass",
+        "md5_pass",
+        "image",
+        "following",
+        "follower",
+        "score" ,
+        "question",
+        "answers",
+        "article",
+        "remember_token"
     ];
 
     /**
@@ -43,8 +43,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        "password",
+        "remember_token",
     ];
 
     /**
@@ -53,8 +53,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        "email_verified_at" => "datetime",
+        "password" => "hashed",
     ];
 
     protected $table = 'q_user';

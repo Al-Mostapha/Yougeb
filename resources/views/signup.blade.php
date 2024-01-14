@@ -31,25 +31,26 @@
               </div>
             </div>
             <div class="input-wrapper">
-              <div class="input-unit w-100 has-error">
+              <div id="userName-wrapper" class="input-unit w-100">
                 <input id="user-name" class="input" type="text" data-max-length="36" placeholder="username">
                 <div class="max-num"><label>0</label><span>/36</span></div>
               </div>
-              <div class="text-start input-error ">
-                user name is error
-              </div>
-              <div class="input-unit w-100">
+              <div id="userName-error-msg" class="text-start input-error"></div>
+              <div  id="userMail-wrapper" class="input-unit w-100">
                 <input id="user-email" class="input"  type="text" data-max-length="64" placeholder="email">
                 <div class="max-num"><label>0</label><span>/64</span></div>
               </div>
-              <div class="input-unit w-100">
+              <div id="userMail-error-msg" class="text-start input-error"></div>
+              <div id="userPass-wrapper" class="input-unit w-100">
                 <input id="user-password" class="input" type="password" data-max-length="50" placeholder="password">
                 <div class="max-num"><label>0</label><span>/50</span></div>
               </div>
-              <div class="input-unit w-100">
+              <div id="userPass-error-msg" class="text-start input-error"></div>
+              <div id="userPass_confirmation-wrapper"  class="input-unit w-100">
                 <input id="password-confirm"  class="input" type="password" data-max-length="50" placeholder="confirm password">
                 <div class="max-num"><label>0</label><span>/50</span></div>
               </div>
+              <div id="userPass_confirmation-error-msg" class="text-start input-error"></div>
             </div>
             <div class="have-no-acc">
               <div class="wrapper">
@@ -65,7 +66,10 @@
               <div class="unit-logo easy-bg-color" style="background-image: url('{{asset("/image/icon/social/036-facebook.svg")}}')"></div>
               <div class="unit-logo easy-bg-color" style="background-image: url('{{asset("/image/icon/social/004-wikipedia.svg")}}')"></div>
             </div>
-            <button id="sign-up-btn" class="h4 bold">إنشاء حساب</button>
+            <button id="sign-up-btn" class="h4 bold">
+              <span class="spinner-border spinner-border-m" role="status" aria-hidden="true" style="display: none;"></span>
+              <span>إنشاء حساب</span>
+            </button>
           </div>
         </div>
       </div>

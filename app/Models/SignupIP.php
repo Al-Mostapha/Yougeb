@@ -9,4 +9,6 @@ class SignupIP extends Model
 {
     use HasFactory;
     protected $table = 'q_signup_ip';
+    protected $guarded = [];  
+    public $timestamps = false;
 }

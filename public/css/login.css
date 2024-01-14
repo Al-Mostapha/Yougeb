@@ -7,7 +7,6 @@
   margin-top: 36px;
 }
 
-
 #form-container .login-page {
   /* width: 40%; */
   margin: 0 auto;
@@ -182,3 +181,8 @@
 #form-container .has-error{
   outline: red 1px solid;
 };
+
+#sign-up-btn .spinner-border{
+  width: 1.5rem;
+  height: 1.5rem;
+}

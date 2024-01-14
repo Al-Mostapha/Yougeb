@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="" lang="ar">
+<html class="" lang="ar"  id="logPage">
     <head>
         <title>يُجيب - تسجيل الدخول</title>
         @include('partial._css')
@@ -16,13 +16,13 @@
           }
         </script>
     </head>
-    <body id="logPage">
+    <body style="background: none;">
         <div id="over-layer" class="hidden dir">
             <div id="alert-top-tip-wrapper"></div>
         </div>
         @include('partial._header')
         <div id="form-container">
-            <div class="login-page">
+            <div class="login-page col-4">
                 <div class="form-login">
                     <div class="logo-wrapper">
                         <div class="logo">
@@ -30,12 +30,18 @@
                         </div>
                     </div>
                     <div class="input-wrapper flex">
-                        <input id="user-mail"     type="text" placeholder="email"> 
-                        <input id="user-password" type="password" placeholder="password">
+                        <div id="userMail-wrapper" class="input-unit w-100">
+                            <input id="user-mail"     type="text" placeholder="email"> 
+                        </div>
+                        <div id="userMail-error-msg" class="text-start input-error"></div>
+                        <div id="userPass-wrapper" class="input-unit w-100">
+                            <input id="user-password" type="password" placeholder="password">
+                        </div>
+                        <div id="userPass-error-msg" class="text-start input-error"></div>
                     </div>
                     <div class="have-no-acc">
                         <div class="wrapper">
-                            <h1>
+                            <h1 class="h5">
                                 <span>ليس لديك حساب؟ </span><a href="{{url("/signup")}}">انشاء حساب الان</a>
                             </h1>
                         </div>
@@ -47,8 +53,10 @@
                         <div class="unit-logo easy-bg-color" style="background-image: url('{{asset("/image/icon/social/036-facebook.svg")}}')"></div>
                         <div class="unit-logo easy-bg-color" style="background-image: url('{{asset("/image/icon/social/004-wikipedia.svg")}}')"></div>
                     </div>
-                    <button id="log-in-btn">تسجيل الدخول</button>
-
+                    <button id="log-in-btn" class="h4 bold">
+                        <span class="spinner-border spinner-border-m" role="status" aria-hidden="true" style="display: none;"></span>
+                        <span>تسجيل الدخول</span>
+                    </button>
                 </div>
             </div>
         </div>

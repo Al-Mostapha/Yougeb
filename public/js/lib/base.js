@@ -4,6 +4,13 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+$(document).ready(()=>{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
 
 const MAX = {
     USER_NAME_LENGTH:36,
