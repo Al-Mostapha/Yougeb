@@ -25,7 +25,7 @@ class User extends Authenticatable
         "brief",
         "user_group",
         "email",
-        "enc_pass",
+        "password",
         "md5_pass",
         "image",
         "following",
@@ -54,11 +54,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         "email_verified_at" => "datetime",
-        "password" => "hashed",
+        "enc_pass" => "hashed",
     ];
 
     protected $table = 'q_user';
     protected $primaryKey = 'id_user';
     public $incrementing = false;
     public $timestamps = false;
+
 }

@@ -15,6 +15,9 @@
             }]
           }
         </script>
+        <meta name="description" content="يُجيب - تسجيل الدخول">
+        <meta name="keywords" content="يُجيب - تسجيل الدخول">
+        @include("partial._common_meta")
     </head>
     <body style="background: none;">
         <div id="over-layer" class="hidden dir">

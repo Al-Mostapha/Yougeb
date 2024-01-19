@@ -40,7 +40,7 @@ return new class extends Migration
             $table->text("brief")->nullable();
             $table->smallInteger("user_group")->default(0);
             $table->string("email", 128)->index();
-            $table->string("enc_pass", 128);
+            $table->string("password", 128);
             $table->string("md5_pass", 32);
             $table->text("image");
             $table->integer("follower")->default(0);

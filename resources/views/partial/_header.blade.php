@@ -7,12 +7,12 @@
         <div id="nav-tabs" class="icon-wrapper fullH">
             <ul class="nav w-100 h-100">
                 <li class="nav-item w-25 h-100">
-                  <a class="nav-link" href="{{ url("/") }}">
-                    <div class="wrapper">
-                      <label></label>
-                      <span>الرئيسية</span>
-                    </div>
-                  </a>
+                    <a class="nav-link" href="{{ url("/") }}">
+                        <div class="wrapper">
+                        <label></label>
+                        <span>الرئيسية</span>
+                        </div>
+                    </a>
                 </li>
                 <li class="nav-item w-25 h-100">
                     <a class="nav-link" href="{{ url("/feed") }}">
@@ -48,11 +48,11 @@
           </div>
           <div id="search-result"></div>
         </div>
-        <div class="other-wrapper fullH flex">
+        <div id="header-profile-btn" class="other-wrapper fullH flex">
           @if(auth()->check())
               <div class="profile">
                 <div class="user-image">
-                    <a id="openUserHeaderList" class="avatar" style="background-image: url('{{url('/'.auth()->user()->image)}}')"></a>
+                    <a id="openUserHeaderList" class="avatar" style="background-image: url('{{asset('/'.auth()->user()->image)}}')"></a>
                 </div>
                 <div class="profile-pop-up list-with-arrow"> 
                     <div class="res-wrapper rtl">

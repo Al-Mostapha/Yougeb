@@ -9,4 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+    public static function formatTime($time){
+        return $time;
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -21,9 +22,11 @@ class LoginController extends Controller
             'userPass' => ['required', 'string', 'min:8'],
         ]);
         $credentials = $request->only('userMail', 'userPass');
-        if (Auth::attempt(["email" => $credentials["userMail"], "enc_pass" => $credentials["userPass"]])) {
+        if (Auth::attempt(["email" => $credentials["userMail"], "password" => $credentials["userPass"]])) {
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            return [
+                "state" => "ok"
+            ];
         }
 
         return [

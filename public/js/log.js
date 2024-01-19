@@ -68,7 +68,7 @@ $(document).on("click" , "#sign-up-btn" , function (){
     $("#sign-up-btn .spinner-border").show();
     let _this = $(this);
     $.ajax({
-        url: "/api/User/Create",
+        url: "/User/Create",
         type: 'POST',
         data:{
             userName:userName,
@@ -108,7 +108,7 @@ $(document).on("click" , "#log-in-btn", function (){
     _this.attr("disabled" , "disabled");
     
     $.ajax({
-        url:"/api/User/Login",
+        url:"/User/Login",
         type: 'POST',
         data:{
             userMail: userMail,
@@ -119,25 +119,19 @@ $(document).on("click" , "#log-in-btn", function (){
         },
         success: function (data, textStatus, jqXHR) {
             $("#log-in-btn").removeAttr("disabled");
-            if(isJson(data)){
-                var jsonData = JSON.parse(data);
-            }else{
-                alert(data);
-            }
             
-            if(jsonData.state === "error_email"){
+            if(data.state === "error_email"){
                 
                 alertBox.tipTop("خطاء فى البريد الالكترونى");
                 
-            }else if(jsonData.state === "error_pass"){
+            }else if(data.state === "error_pass"){
                 
                 alertBox.tipTop("خطاء كلمة المرور");
                 
             }
-            if(jsonData.state === "ok"){
+            if(data.state === "ok"){
                 
-                window.location.href   = BASE_URL;
-                window.location.replace(BASE_URL);
+                window.location.href = "/home"
                 
             }
             

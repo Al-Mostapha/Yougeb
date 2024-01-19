@@ -55,7 +55,7 @@
                 <div id="left-col">
                     <div class="left-col-wrapper">
                         <div class="title">
-                            <h1 class="text">عناوين مرتبطة</h1>
+                            <h1 class="text h4">عناوين مرتبطة</h1>
                         </div>
                         <div class="list-wrapper">
                             <div id="related-tags" class="tag-list"></div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="left-col-wrapper">
                         <div class="title">
-                            <h1 class="text">عناوين متشابهة</h1>
+                            <h1 class="text h4">عناوين متشابهة</h1>
                         </div>
                         <div class="list-wrapper">
                             <div id="similar-tags" class="tag-list">

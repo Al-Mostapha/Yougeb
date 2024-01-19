@@ -194,13 +194,13 @@
           <div id="left-col">
             <div class="left-col-wrapper">
               <div class="title">
-                <h1 class="text">مواضيع يتابعها "{{$User->full_name}}"</h1>
+                <h1 class="text h4">مواضيع يتابعها "{{$User->full_name}}"</h1>
               </div>
               <div id="similar-topics" class="list-wrapper"></div>
             </div>
             <div class="left-col-wrapper">
               <div class="title">
-                <h1 class="text">عناوين يستعملها "{{$User->full_name}}"</h1>
+                <h1 class="text h4">عناوين يستعملها "{{$User->full_name}}"</h1>
               </div>
               <div id="related-tags"  class="list-wrapper tag-list"></div>
             </div>

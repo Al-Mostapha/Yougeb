@@ -14,7 +14,7 @@
                 <div id="left-col">
                     <div class="left-col-wrapper">
                         <div class="title">
-                            <h1 class="text">التحديث اليوم للعناوين</h1>
+                            <h1 class="text h4">التحديث اليوم للعناوين</h1>
                         </div>
                         <div class="list-wrapper tag-list">
                             <ul id="recent-tag-feeds"></ul>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="left-col-wrapper">
                         <div class="title">
-                            <h1 class="text">التحديث اليومى للمواضيع</h1>
+                            <h1 class="text h4">التحديث اليومى للمواضيع</h1>
                         </div>
                         <div class="list-wrapper" id="similar-topics">
                             <ul id="recent-topic-feeds"></ul>

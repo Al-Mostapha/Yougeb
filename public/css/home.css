@@ -175,17 +175,18 @@ html{
     width: 40%;
     height: 100%;
     overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #glo-header .other-wrapper .profile .avatar{
     width: 40px;
-    margin: auto;
-    height: 75%;
+    height: 40px;
     display: block;
     background-color: transparent;
     border-radius: 50%;
     border: none;
-    margin-top: 5px;
     background-image: url(../image/icon/magazine.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -1056,16 +1057,15 @@ html{
     border-bottom: solid 1px #d3d3d3;
 }
  .top-wrapper .tabs .unit-arrange{
-    height: 40px;
     margin: 0px 5px;
 }
  .top-wrapper .tabs .unit-arrange .text{
     padding: 0px 5px;
     background-color: white;
-    height: 41px
 }
 .top-wrapper .tabs .unit-arrange .text a{
-    text-decoration: none
+    text-decoration: none;
+    font-size: 1rem;
 }
 .top-wrapper .tabs {
     justify-content: space-between
@@ -1074,6 +1074,7 @@ html{
     border: solid 1px #d3d3d3;
     border-bottom: transparent;
     border-top: solid 2px #008a00;
+    height: 42px;
 }
  .arrange{
     float: left;
@@ -1236,4 +1237,16 @@ html{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+#header-profile-btn{
+    width: 40%;
+}
+
+.footer-links-list{
+    flex-flow: row-reverse;
+    text-decoration: none;
+    list-style: none;
+    font-weight: bold;
+    font-size: 1rem;
 }

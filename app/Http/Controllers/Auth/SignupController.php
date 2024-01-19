@@ -58,7 +58,7 @@ class SignupController extends Controller
           "id_user" => Str::orderedUuid(),
           'id_url' => $idUrl, "mention_name" => $MentionName, 
           "full_name" => $data['userName'], "email" => $data['userMail'], 
-          "enc_pass" => $EncPass, "md5_pass" => $Md5Pass, 
+          "password" => $EncPass, "md5_pass" => $Md5Pass, 
           "image" => $this->defaultImage[rand(0, 29)]
         ]);
         Log::info(json_encode($user));

@@ -35,7 +35,7 @@
         <div id="left-col">
           <div class="left-col-wrapper">
             <div class="title">
-              <h1 class="text">اشهر عناوين "{{$Topic->title}}"</h1>
+              <h1 class="text h4">اشهر عناوين "{{$Topic->title}}"</h1>
             </div>
             <div class="list-wrapper">
               <div id="related-tags" class="tag-list"></div>
@@ -43,7 +43,7 @@
           </div>
           <div class="left-col-wrapper">
             <div class="title">
-              <h1 class="text">مواضيع مشابهة</h1>
+              <h1 class="text h4">مواضيع مشابهة</h1>
             </div>
             <div class="list-wrapper">
               <div id="similar-topics"></div>

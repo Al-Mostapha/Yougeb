@@ -1,5 +1,4 @@
 <script data-ad-client="ca-pub-1031103227407155" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<meta id="" name="viewport" content="width=device-width, initial-scale=0.5">
 {{-- <link rel="stylesheet" href="{{asset("css/reset-min.css")}}" rel="stylesheet"/> --}}
 <link rel="stylesheet" href="{{asset("css/lib/bootstrap.min.css")}}" rel="stylesheet"/>
 {{-- <link rel="stylesheet" href="{{asset("css/fonts-min.css")}}" rel="stylesheet"/> --}}

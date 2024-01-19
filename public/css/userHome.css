@@ -52,7 +52,7 @@
     margin-top: 15px;
 }
 #wrapper-top .content .slogan-wrapper{
-    height: 90px;
+    /* height: 90px; */
 }
 #wrapper-top .content .slogan-wrapper .slogan h1{
     font-size: 3em;
@@ -272,7 +272,6 @@
     color: white;
     display: block;
     text-align: center;
-    font-size: 14px;
 }
 
 #glo-footer .floot-slide{

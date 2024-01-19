@@ -3,41 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>يُجيب - {{ $taged->title }}</title>
+    <title>يُجيب - جميع الأسئلة</title>
     @include('partial._css')
-    @if ($topTopic)
-        <script type="application/ld+json">
-                {
-                  "@context": "https://schema.org",
-                  "@type": "BreadcrumbList",
-                  "itemListElement": [{
+    <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
                     "@type": "ListItem",
                     "position": 1,
-                    "name": "{{$topTopic->title}}",
-                    "item": "{{url("/topic/".$topTopic->id_url)}}"
-                  },{
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "{{$topTopic->title}}",
-                    "item": "{{url("/feed/".$topTopic->id_url)}}"
-                  }]
-                }
-            </script>
-    @else
-        <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    "itemListElement": [{
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "جميع الاسئلة",
-                        "item": "{{url("/feed")}}"
-                    }]
-                }
-        </script>
-    @endif
-
+                    "name": "جميع الاسئلة",
+                    "item": "{{url("/feed")}}"
+                }]
+            }
+    </script>
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/feed') }}">
     <meta property="og:site_name" content="يُجيب - Yougeb">
@@ -48,7 +27,7 @@
     <meta name="twitter:description" property="og:description" itemprop="description"
         content="جميع الاسئلة فى جميع المجالات حسب الاشهر والاكثر تصويت داخل مجتمع يُجيب">
     <meta name="description" content="جميع الاسئلة فى جميع المجالات حسب الاشهر والاكثر تصويت داخل مجتمع يُجيب">
-    <meta name="keywords" content="جميع الاسئلة فى جميع المجالات حسب الاشهر والاكثر تصويت داخل مجتمع يُجيب">'
+    <meta name="keywords" content="جميع الاسئلة فى جميع المجالات حسب الاشهر والاكثر تصويت داخل مجتمع يُجيب">
 </head>
 
 <body>
@@ -59,7 +38,7 @@
             <div id="left-col">
                 <div class="left-col-wrapper">
                     <div class="title">
-                        <h1 class="text">اشهر العنواين</h1>
+                        <h1 class="text h4">اشهر العنواين</h1>
                     </div>
                     <div class="list-wrapper">
                         <div id="related-tags" class="tag-list"></div>
@@ -67,7 +46,7 @@
                 </div>
                 <div class="left-col-wrapper">
                     <div class="title">
-                        <h1 class="text">احدث العناوين</h1>
+                        <h1 class="text h4">احدث العناوين</h1>
                     </div>
                     <div class="list-wrapper">
                         <div id="similar-tags" class="tag-list">
@@ -97,23 +76,23 @@
                     @include("partial._feed_ans")
                 </div>
             </div>
-            @include('partial._rightCol')
+            @include('partial._right_col')
         </div>
     </div>
     <div id="over-layer-wrapper"></div>
     @include('partial._js')
-    <script type="text/javascript" src="{{asser("/js/lib/jquery-3.2.1.min.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/lib/heighlight.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/lib/katex.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/lib/quill.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/lib/mathquill.min.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/lib/mathquill4quill.min.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/lib/base.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/quran.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/user.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/editor.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/addQ.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/feed.js")}}"></script>
-    <script type="text/javascript" src="{{asser("/js/answer.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/jquery-3.2.1.min.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/heighlight.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/katex.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/quill.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/mathquill.min.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/mathquill4quill.min.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/lib/base.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/quran.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/user.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/editor.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/addQ.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/feed.js")}}"></script>
+    <script type="text/javascript" src="{{asset("/js/answer.js")}}"></script>
 </body>
 </html>

@@ -21,7 +21,9 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #glo-header .profile .profile-pop-up{
     width: 250px;

@@ -3,21 +3,21 @@
       <div class="top-wrapper">
           <div class="top flex">
               <div class="ans-num" style="flex-grow: 2;">
-                  {{$totalFeedCount}}&nbsp;&nbsp;&nbsp;<span class="gray">سؤال</span>
+                  {{$paginator->total()}}&nbsp;&nbsp;&nbsp;<span class="gray">سؤال</span>
               </div>
               <div class="blank" style="flex-grow: 20; "></div>
               <div class="arrange" style="flex-grow: 5;">
                   <div class="flex ltr">
                       <div class="tabs flex">
                           <div
-                              class="unit-arrange <?= $filter == env("FEED_FILTER_BEST") ? 'selected' : '' ?> ">
+                              class="unit-arrange {{$filter == env("FEED_FILTER_BEST") ? 'selected' : ''}}">
                               <div class="text">
-                                  <a href="<?= url()->current() . '?sort=' . env("FEED_FILTER_BEST") ?>"
+                                  <a href="{{url()->current() . '?sort=' . env("FEED_FILTER_BEST")}}"
                                       class="easy-bg-color">تصويت</a>
                               </div>
                           </div>
                           <div
-                              class="unit-arrange <?= $filter == env("FEED_FILTER_OLD") ? 'selected' : '' ?>">
+                              class="unit-arrange {{ $filter == env("FEED_FILTER_OLD") ? 'selected' : ''}}">
                               <div class="text">
                                   <a href="<?= url()->current() . '?sort=' . env("FEED_FILTER_OLD") ?>"
                                       class="easy-bg-color">الاقدم</a>
@@ -48,8 +48,8 @@
                   </div>
               </div>
           </div>
-          <div class="page-list">
-              {{$pageList}}
+          <div class="page-list" style="display: none">
+              {{$paginator->links()}}
           </div>
       </div>
   </div>

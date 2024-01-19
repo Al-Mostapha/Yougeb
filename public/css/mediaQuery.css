@@ -11,6 +11,7 @@
     #glo-header .sea-btn-warpper {
         display: flex;
         flex-flow: row-reverse;
+        width: 100%;
     }
 
     #glo-header .logo-tap-wrapper{
@@ -70,10 +71,6 @@
     }
     
     
-    /*  Home */
-    #glo-container{
-        margin-top: 79px;
-    }
     .float-image{
         width: 150px;
         height: 250px;
