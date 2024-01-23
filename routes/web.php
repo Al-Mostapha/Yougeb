@@ -25,7 +25,8 @@ Route::view('/signup', "signup")->name('signup');
 Route::view('/login', "login")->name('login')->middleware("guest");
 Route::view('/home', "home")->name('home')->middleware("auth");
 Route::get("/@{mentionName}", [UserController::class, "index"]);
-Route::get("/feed/{idTag?}", [FeedController::class, "index"]);
+Route::get("/feed", [FeedController::class, "index"]);
+Route::get("/feed/{idTag}", [FeedController::class, "indexForTag"]);
 
 Route::post("/User/Create", [SignupController::class, "create"]);
 Route::post("/User/Login", [LoginController::class, "login"]);

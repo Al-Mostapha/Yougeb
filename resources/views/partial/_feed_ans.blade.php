@@ -33,9 +33,9 @@
                         <ul class="flex">
                             @php
                                 $oneFeed->tags = App\Models\Tag::join("q_feed_tag", "q_feed_tag.id_tag", "=", "q_tag.id_tag")
-                                        ->where("q_feed_tag.id_feed", $oneFeed->id_feed)
-                                        ->select("q_tag.id_url", "q_tag.title")
-                                        ->get();
+                                    ->where("q_feed_tag.id_feed", $oneFeed->id_feed)
+                                    ->select("q_tag.id_url", "q_tag.title")
+                                    ->get();
                             @endphp
                             @foreach($oneFeed->tags as $oneTag)
                             <li>
@@ -46,7 +46,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="asked-by-box">
+                    <div class="asked-by-box me-auto">
                         <div class="ask-date h6 text-truncate">سئل {{App\Http\Controllers\Controller::formatTime($oneFeed->time_stamp)}}</div>
                         <div class="user-box">
                             <div class="image">
@@ -58,7 +58,6 @@
                                         {{$oneFeed->full_name}}
                                     </a>
                                 </div>
-                                <div></div>
                             </div>
                         </div>
                     </div>
@@ -70,8 +69,8 @@
         <p>No items found.</p>
     @endforelse
     <div class="last-raw">
-        <div class="page-list flex" style="display: none">
-            {{$paginator->links()}}
+        <div class="page-list mt-3">
+            {{$paginator->onEachSide(1)->links("partial._paginator")}}
         </div>
     </div>
 </div>

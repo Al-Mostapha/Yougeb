@@ -1,4 +1,4 @@
-<div id="left-col">
+<div id="left-col" class="col-3">
   <div class="left-col-wrapper">
       <div class="title">
           <h1 class="text h4">اسالة متشابهة</h1>

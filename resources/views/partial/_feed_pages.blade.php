@@ -2,11 +2,10 @@
   <div class="container">
       <div class="top-wrapper">
           <div class="top flex">
-              <div class="ans-num" style="flex-grow: 2;">
+              <div class="ans-num">
                   {{$paginator->total()}}&nbsp;&nbsp;&nbsp;<span class="gray">سؤال</span>
               </div>
-              <div class="blank" style="flex-grow: 20; "></div>
-              <div class="arrange" style="flex-grow: 5;">
+              <div class="arrange col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0">
                   <div class="flex ltr">
                       <div class="tabs flex">
                           <div
@@ -31,7 +30,7 @@
                               </div>
                           </div>
                           <div
-                              class="unit-arrange <?= $filter == env("FEED_FILTER_UN_ANS") ? 'selected' : '' ?>">
+                              class="unit-arrange <?= $filter == env("FEED_FILTER_UN_ANS") ? 'selected me-1 mx-1' : '' ?>">
                               <div class="text">
                                   <a href="<?= url()->current() . '?sort=' . env("FEED_FILTER_UN_ANS") ?>"
                                       class="easy-bg-color">بدون اجابة</a>
@@ -48,8 +47,8 @@
                   </div>
               </div>
           </div>
-          <div class="page-list" style="display: none">
-              {{$paginator->links()}}
+          <div class="page-list mt-3">
+              {{$paginator->onEachSide(1)->links("partial._paginator")}}
           </div>
       </div>
   </div>

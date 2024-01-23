@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="UTF-8">
     <title>يُجيب - جميع الأسئلة</title>
+    @include("partial._common_meta")
     @include('partial._css')
     <script type="application/ld+json">
             {
@@ -31,30 +31,12 @@
 </head>
 
 <body>
-    @include('partial._header')
+    @include('partial._header_new')
     <div id="glo-container" data-page="feed" data-id-tag="all">
         <div id="profile-header"> </div>
         <div id="body-wrapper" class="dir">
-            <div id="left-col">
-                <div class="left-col-wrapper">
-                    <div class="title">
-                        <h1 class="text h4">اشهر العنواين</h1>
-                    </div>
-                    <div class="list-wrapper">
-                        <div id="related-tags" class="tag-list"></div>
-                    </div>
-                </div>
-                <div class="left-col-wrapper">
-                    <div class="title">
-                        <h1 class="text h4">احدث العناوين</h1>
-                    </div>
-                    <div class="list-wrapper">
-                        <div id="similar-tags" class="tag-list">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="mid-col">
+            @include("partial.left_col")
+            <div class="col-8" id="mid-col">
                 <div class="mid-wrapper">
                     <div id="feed-page-top" class="glo-unit mid-unit">
                         <div id="feed-page-header">
