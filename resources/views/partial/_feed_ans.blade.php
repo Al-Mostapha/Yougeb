@@ -22,7 +22,7 @@
             <div class="ans-cont-wrapper">
                 <div class="question-title-wrapper">
                     <h1>
-                        <a href="{{url("/$oneFeed->title")}}">{{$oneFeed->title}}؟</a>
+                        <a href="{{url("/$oneFeed->id_url")}}">{{$oneFeed->title}}؟</a>
                     </h1>
                 </div>
                 <div class="question-summary">

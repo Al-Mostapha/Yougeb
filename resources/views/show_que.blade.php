@@ -11,38 +11,45 @@
             "mainEntity": {
               "@type": "Question",
               "name": "{{$Feed->title}} ؟",
-              @if($Que->content_text == "")
+              @if($Question->content_text == "")
                 "text": "{{$Feed->title}}",
               @else
-                "text": "{{mb_substr($Que->content_text, 0, 250)}}",
+                "text": "{{mb_substr($Question->content_text, 0, 250)}}",
               @endif
-              "answerCount": {{$Que->ans_num}},
+              "answerCount": {{$Question->ans_num}},
               "upvoteCount": {{$Feed->upvote - $Feed->downvote}},
               "dateCreated": "{{date(DATE_ISO8601, $Feed->time_stamp)}}",
               "author": {
                 "@type": "Person",
                 "name": "{{$QUser->full_name}}"
               }
-              @if(isset($Qans))
+              @if($QAns)
                 ,
                 "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{{addslashes($Qans->ans_text)}}",
-                "dateCreated": "{{date(DATE_ISO8601 , $Qans->time_stamp)}}",
-                "upvoteCount": {{$Qans->upvote - $Qans->downvote}},
+                "text": "{{addslashes($QAns->ans_text)}}",
+                "dateCreated": "{{date(DATE_ISO8601 , $QAns->time_stamp)}}",
+                "upvoteCount": {{$QAns->upvote - $QAns->downvote}},
                 "url": "{{url()->current("#acceptedAnswer")}}",
                 "author": {
                   "@type": "Person",
-                  "name": "{{$Qans->full_name}}"
+                  "name": "{{$QAns->full_name}}"
                 }
               }
               @endif
-              '.$acceptedAns.'
             }
           }
         </script>
-        
-        @if(isset($topTopic))
+        @php
+            $TopTag = collect($QTags)->max("used_num");
+            if($TopTag){
+                $TopTopic = App\Models\Topic::
+                join("q_topic_tag", "q_topic.id_topic", "=", "q_topic_tag.id_topic")
+                ->select("q_topic.title", "q_topic.id_url")
+                ->where("q_topic_tag.id_tag", "=", $TopTag->id_tag)->first();
+            }
+        @endphp
+        @if(isset($TopTopic))
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
@@ -50,13 +57,13 @@
             "itemListElement": [{
               "@type": "ListItem",
               "position": 1,
-              "name": "{{addslashes($topTopic->title)}}",
-              "item": "{{url("/topic/$topTopic->id_url")}}"
+              "name": "{{addslashes($TopTopic->title)}}",
+              "item": "{{url("/topic/$TopTopic->id_url")}}"
             },{
               "@type": "ListItem",
               "position": 2,
-              "name": "{{addslashes($topTag[0]->title)}}",
-              "item": "{{url("/feed/$topTag[0]->id_url")}}"
+              "name": "{{addslashes($TopTag->title)}}",
+              "item": "{{url("/feed/$TopTag->id_url")}}"
             },{
               "@type": "ListItem",
               "position": 3,
@@ -73,14 +80,14 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:domain" content="www.yougeb.com">
         <meta name="twitter:title" property="og:title" itemprop="name" content="{{$Feed->title}} ؟">
-        <meta name="twitter:description" property="og:description" itemprop="description" content="{{mb_substr($Que->content_text, 0, 160)}}">
-        <meta name="description" content="{{mb_substr($Que->content_text, 0, 160)}}"> 
+        <meta name="twitter:description" property="og:description" itemprop="description" content="{{mb_substr($Question->content_text, 0, 160)}}">
+        <meta name="description" content="{{mb_substr($Question->content_text, 0, 160)}}"> 
         <meta name="keywords" content="{{implode(", ", array_column($QTags, "title"))}}">
     </head>
     <body>
         @include('partial._header')
         <div id="glo-container" 
-            data-page="showQ" data-idQue = "{{$alphaID}}" 
+            data-page="showQ" data-idQue = "{{$Question->id_que}}" 
             data-ans-offset="{{$AnsOffset}}"
             data-ans-ord="{{$AnsOrder}}">
             <div id="profile-header"></div>
@@ -151,7 +158,7 @@
                                     </div>
                                     <div class="ans-cont-wrapper ql-snow">
                                         <div id="QueSummary" class="question-summary ql-editor rich-text">
-                                            {{$Que->content_html}}
+                                            {{$Question->content_html}}
                                             <button id="update-que-content" class="tag-txt edit-btn" title="تعديل وصف السؤال"></button>
                                         </div>
                                         <div class="asked-by-wrapper">
@@ -224,7 +231,7 @@
                             <div class="container">
                                 <div class="top-wrapper">
                                     <div class="top flex">
-                                        <div class="ans-num" style="flex-grow: 2;">{{$Que->ans_num}} اجابة</div>
+                                        <div class="ans-num" style="flex-grow: 2;">{{$Question->ans_num}} اجابة</div>
                                         <div class="blank" style="flex-grow: 20; "></div>
                                         <div class="arrange" style="flex-grow: 5;">
                                             <div class="flex ltr">
@@ -257,7 +264,7 @@
                             </div>
                         </div>
                         <div id="Que-Ans-Wrapper">
-                            @foreach($Qans as $oneAns)
+                            @foreach($QAns as $oneAns)
                                 {{(new Ans($oneAns["id_ans"]))->getHtml()}}
                             @endforeach
                         </div>

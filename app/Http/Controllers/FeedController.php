@@ -72,7 +72,7 @@ class FeedController extends Controller
         $filterTag = "";
         $Tag = Tag::select("id_tag", "title", "brief", "id_url")->where("id_url", "=", $this->request->route("idTag"))->first();
         if(!$Tag){
-            return new NotFound();
+            return abort(404, 'Not Found');;
         }
 
         $filterTag = " AND q_feed_item.id_feed IN( SELECT id_feed FROM q_feed_tag WHERE id_tag = '{$Tag->id_tag}')";
