@@ -90,11 +90,12 @@ class FeedController extends Controller
                     ->where("q_topic_tag.id_tag", "=", $Tag->id_tag)
                     ->first();
         $paginator = $FeedsQuery->paginate()->withQueryString();
+        error_log($paginator->toJson());
         return view("feed4tag", [
             "paginator" => $paginator,
             "filter" => $this->filter,
             "Feeds" => $FeedsQuery->get(),
-            "Tag" => $Tag->first(),
+            "Tag" => $Tag,
             "Topic" => $TopTopic ?? new Topic()
         ]);
     }

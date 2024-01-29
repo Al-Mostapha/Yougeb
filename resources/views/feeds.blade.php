@@ -35,7 +35,7 @@
     <div id="glo-container" data-page="feed" data-id-tag="all">
         <div id="profile-header"> </div>
         <div id="body-wrapper" class="dir">
-            @include("partial.left_col")
+            @include("partial._left_col")
             <div class="col-8" id="mid-col">
                 <div class="mid-wrapper">
                     <div id="feed-page-top" class="glo-unit mid-unit">

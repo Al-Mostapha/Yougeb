@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\QueController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get("/{idFeed}", [UserController::class, "index"]);
 
 Route::view('/signup', "signup")->name('signup');
 Route::view('/login', "login")->name('login')->middleware("guest");
@@ -33,3 +33,6 @@ Route::get("/feed/{idTag}", [FeedController::class, "indexForTag"]);
 
 Route::post("/User/Create", [SignupController::class, "create"]);
 Route::post("/User/Login", [LoginController::class, "login"]);
+
+
+Route::get("/{idFeed}", [QueController::class, "index"]);

@@ -23,17 +23,17 @@
                 "@type": "Person",
                 "name": "{{$QUser->full_name}}"
               }
-              @if($QAns)
+              @if($QAns->first())
                 ,
                 "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{{addslashes($QAns->ans_text)}}",
-                "dateCreated": "{{date(DATE_ISO8601 , $QAns->time_stamp)}}",
-                "upvoteCount": {{$QAns->upvote - $QAns->downvote}},
+                "text": "{{addslashes($QAns->first()->ans_text)}}",
+                "dateCreated": "{{date(DATE_ISO8601 , $QAns->first()->time_stamp)}}",
+                "upvoteCount": {{$QAns->first()->upvote - $QAns->first()->downvote}},
                 "url": "{{url()->current("#acceptedAnswer")}}",
                 "author": {
                   "@type": "Person",
-                  "name": "{{$QAns->full_name}}"
+                  "name": "{{$QAns->first()->full_name}}"
                 }
               }
               @endif
@@ -41,7 +41,7 @@
           }
         </script>
         @php
-            $TopTag = collect($QTags)->max("used_num");
+            $TopTag = $QTags->where("used_num", $QTags->max("used_num"))->first();
             if($TopTag){
                 $TopTopic = App\Models\Topic::
                 join("q_topic_tag", "q_topic.id_topic", "=", "q_topic_tag.id_topic")
@@ -82,11 +82,15 @@
         <meta name="twitter:title" property="og:title" itemprop="name" content="{{$Feed->title}} ؟">
         <meta name="twitter:description" property="og:description" itemprop="description" content="{{mb_substr($Question->content_text, 0, 160)}}">
         <meta name="description" content="{{mb_substr($Question->content_text, 0, 160)}}"> 
-        <meta name="keywords" content="{{implode(", ", array_column($QTags, "title"))}}">
+        <meta name="keywords" content="{{$QTags->implode("title", ", ")}}">
     </head>
     <body>
-        @include('partial._header')
-        <div id="glo-container" 
+        @include('partial._header_new')
+        @php
+        $AnsOffset = 0;
+        $AnsOrder = env("ANS_ORD_VOTE");
+        @endphp
+        <div id="glo-container"
             data-page="showQ" data-idQue = "{{$Question->id_que}}" 
             data-ans-offset="{{$AnsOffset}}"
             data-ans-ord="{{$AnsOrder}}">
@@ -127,19 +131,28 @@
                                 <div class="ans-content">
                                     <div class="v-icon-wrapper">
                                         <div class="v-icon">
+                                            @php
+                                                $QueVote = 0;
+                                                $voter = App\Models\FeedVote::select("vote")
+                                                            ->where("id_user", "=", $Question->id_user)
+                                                            ->where("id_feed", "=", $Feed->id_feed)
+                                                            ->first(); 
+                                                if($voter)
+                                                    $QueVote = $voter[0]["vote"];
+                                            @endphp
                                             <div class="wrapper">
                                                 <div class="btn-wrapper">
-                                                    <button id="{{$alphaID}}-up" class="vote-btn vote-que {{$QueVote == env("VOTE_UP") ? "voted" : ""}}"  data-vote="up" data-id-feed="{{$alphaID}}">
+                                                    <button id="{{$Feed->id_feed}}-up" class="vote-btn vote-que {{$QueVote == env("VOTE_UP") ? "voted" : ""}}"  data-vote="up" data-id-feed="{{$Feed->id_feed}}">
                                                         <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
                                                     </button>
                                                 </div>
                                                 <div class="score">
-                                                    <div id="{{$alphaID}}-vote-num">
+                                                    <div id="{{$Feed->id_feed}}-vote-num">
                                                         {{$Feed->upvote - $Feed->downvote}}
                                                     </div>
                                                 </div>
                                                 <div class="btn-wrapper">
-                                                    <button id="{{$alphaID}}-down" class="vote-btn vote-que {{$QueVote == env("VOTE_DOWN") ? "voted" : ""}}" data-vote="down" data-id-feed="{{$alphaID}}">
+                                                    <button id="{{$Feed->id_feed}}-down" class="vote-btn vote-que {{$QueVote == env("VOTE_DOWN") ? "voted" : ""}}" data-vote="down" data-id-feed="{{$Feed->id_feed}}">
                                                         <svg aria-hidden="true" class="svg-icon m0 iconArrowDownLg" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
                                                     </button>
                                                 </div>
@@ -158,10 +171,10 @@
                                     </div>
                                     <div class="ans-cont-wrapper ql-snow">
                                         <div id="QueSummary" class="question-summary ql-editor rich-text">
-                                            {{$Question->content_html}}
+                                            {!! $Question->content_html !!}
                                             <button id="update-que-content" class="tag-txt edit-btn" title="تعديل وصف السؤال"></button>
                                         </div>
-                                        <div class="asked-by-wrapper">
+                                        <div class="asked-by-wrapper ms-2">
                                             <div class="tag-list">
                                                 <ul class="flex">
                                                 @foreach($QTags as $oneTag)
@@ -182,7 +195,7 @@
                                                 @endforeach
                                                 </ul>
                                             </div>
-                                            <div class="asked-by-box">
+                                            <div class="asked-by-box me-auto mb-2">
                                                 <div class="ask-date">سئل {{formatTime($Feed->time_stamp)}}</div>
                                                 <div class="user-box">
                                                     <div class="image">
@@ -200,25 +213,24 @@
                                     </div>
                                 </div>
                                 <div class="ans-footer">
-                                    <div class="footer-wrapper">
-                                        <div class="right pull-r">
-                                            <ul>
-                                                <li class="share-in pull-r">
-                                                    <div class="icon pull-r"></div>
-                                                    <div class="number pull-l">{{numberToStr($Feed->reshare)}}</div>
+                                    <div class="footer-wrapper h-100 d-flex flex-row">
+                                        <div class="right h-100">
+                                            <ul class="h-100 d-flex mb-0  flex-row">
+                                                <li class="share-in d-flex h-100 px-2">
+                                                    <div class="icon h-100"></div>
+                                                    <div class="number h-100">12.5k{{numberToStr($Feed->reshare)}}</div>
                                                 </li>
-                                                <li class="comment pull-r">
-                                                    <div class="icon pull-r"></div>
-                                                    <div class="number pull-l">{{numberToStr($Feed->comment)}}</div>
+                                                <li class="comment d-flex h-100 px-2">
+                                                    <div class="icon h-100"></div>
+                                                    <div class="number h-100">12.5k{{numberToStr($Feed->comment)}}</div>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="mid pull-r"></div>
-                                        <div class="left pull-l">
-                                            <ul>
-                                                <li class="share-out pull-l">
-                                                    <div class="icon pull-r"></div>
-                                                    <div class="number pull-l">{{numberToStr($Feed->share_out)}}</div>
+                                        <div class="left me-auto h-100">
+                                            <ul class="h-100 mb-0">
+                                                <li class="share-out d-flex h-100 me-auto px-2">
+                                                    <div class="icon h-100"></div>
+                                                    <div class="number  h-100 me-auto">12.5k{{numberToStr($Feed->share_out)}}</div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -226,9 +238,8 @@
                                 </div>
                             </div>
                         </div>
-                       
                         <div id="q-answers-header" class="glo-unit mid-unit">
-                            <div class="container">
+                            <div class="container mt-2">
                                 <div class="top-wrapper">
                                     <div class="top flex">
                                         <div class="ans-num" style="flex-grow: 2;">{{$Question->ans_num}} اجابة</div>
@@ -255,18 +266,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <div class="page-list">
-                                        <?=$pageList?>
+                                        {{-- $pageList--}}
                                     </div>
                                 </div>
                                 
                             </div>
                         </div>
                         <div id="Que-Ans-Wrapper">
-                            @foreach($QAns as $oneAns)
+
+                            @forelse($QAns as $oneAns)
                                 {{(new Ans($oneAns["id_ans"]))->getHtml()}}
-                            @endforeach
+                            @empty
+                            <h3 class="text-center pt-4 pb-4">لا توجد أى إجابات</h3>
+                            @endforelse
                         </div>
                         <div class="glo-unit mid-unit">
                             <div class="container"> 
@@ -277,7 +290,7 @@
                                         <div class="q-btn-wrapper">
                                             <div class="middel-btns">
                                                 @auth
-                                                    <button id="add-que-ans" data-id-que="{{$alphaID}}" class="btn">أضف اجابة</button>
+                                                    <button id="add-que-ans" data-id-que="{{$Feed->id_feed}}" class="btn">أضف اجابة</button>
                                                 @else
                                                 <button class="btn signup">
                                                     <a class="deco-non" href="{{url("/signup")}}">

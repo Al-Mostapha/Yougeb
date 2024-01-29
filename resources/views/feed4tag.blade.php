@@ -37,14 +37,14 @@
         <div id="glo-container" data-page="feed" data-id-tag="{{$Tag->id_tag}}">
             <div id="profile-header"> </div>
             <div id="body-wrapper" class="dir">
-                @include("partial.left_col")
+                @include("partial._left_col")
                 <div id="mid-col">
                     <div class="mid-wrapper">
                         <div id="feed-page-top" class="glo-unit mid-unit">
                             <div id="feed-page-header">
                                 <div class="up flex">
                                     <div class="right">
-                                        <h1 class="flex"> جميع الاسئلة المرتبطة بـ &nbsp;&nbsp;&nbsp; <div style="direction: ltr">{{$Tag->title}}</div></h1>
+                                        <h1 class="flex"> جميع الاسئلة المرتبطة بـ &nbsp;&nbsp; <div style="direction: ltr">{{$Tag->title}}</div></h1>
                                     </div>
                                     <div class="left">
                                         <div class="wrapper">
