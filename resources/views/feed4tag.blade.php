@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>يُجيب  - {{$Tag->title}}</title>
+        @include("partial._common_meta")
         @include('partial._css')
         <script type="application/ld+json">
             {
@@ -58,7 +59,6 @@
                             </div>
                         </div>
                         @include("partial._feed_ans")
-                        
                     </div>
                 </div>
                 @include('partial._right_col')

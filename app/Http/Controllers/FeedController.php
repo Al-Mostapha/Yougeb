@@ -63,8 +63,7 @@ class FeedController extends Controller
         $paginator = $FeedsQuery->paginate()->withQueryString();
         return view("feeds", [
             "paginator" => $paginator,
-            "filter" => $this->filter,
-            "Feeds" => $FeedsQuery->get()
+            "filter" => $this->filter
         ]);
     }
 
@@ -94,7 +93,6 @@ class FeedController extends Controller
         return view("feed4tag", [
             "paginator" => $paginator,
             "filter" => $this->filter,
-            "Feeds" => $FeedsQuery->get(),
             "Tag" => $Tag,
             "Topic" => $TopTopic ?? new Topic()
         ]);

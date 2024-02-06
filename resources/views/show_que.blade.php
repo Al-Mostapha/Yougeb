@@ -274,7 +274,6 @@
                             </div>
                         </div>
                         <div id="Que-Ans-Wrapper">
-
                             @forelse($QAns as $oneAns)
                                 {{(new Ans($oneAns["id_ans"]))->getHtml()}}
                             @empty

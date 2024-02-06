@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>يُجيب </title>
+    @include('partial._common_meta')
     @include('partial._css')
     <script type="application/ld+json">
       {
@@ -36,11 +37,9 @@
     <meta name="description" content="يجيب - نعمل على اثراء المحتوى العربى عن طريق توفير اكبر مجتمع لتبادل المعرفة">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="Al Mustapha">
-
-  
   </head>
     <body>
-      @include('partial._header')
+      @include('partial._header_new')
       <div id="glo-container" style="background-color: white">
         <div id="user-home">
             <div id="top-gridiant">

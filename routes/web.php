@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\QueController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::view('/signup', "signup")->name('signup');
 Route::view('/login', "login")->name('login')->middleware("guest");
 Route::view('/home', "home")->name('home')->middleware("auth");
 Route::get("/@{mentionName}", [UserController::class, "index"]);
+Route::get("/topic", [TopicController::class, "index"]);
+Route::get("/topic/{idTopic}", [TopicController::class, "indexForTopic"]);
 Route::get("/feed", [FeedController::class, "index"]);
 Route::get("/feed/{idTag}", [FeedController::class, "indexForTag"]);
 

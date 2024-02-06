@@ -1,5 +1,5 @@
 <div class="glo-unit mid-unit ans-card">
-    @forelse($Feeds as $oneFeed)
+    @forelse($paginator as $oneFeed)
     <div class="ans-wrapper feed-unit">
         <div class="ans-content flex">
             <div class="stats-container">

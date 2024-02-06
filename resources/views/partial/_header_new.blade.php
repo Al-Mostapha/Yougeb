@@ -1,4 +1,4 @@
-<header class="p-2 mb-2 border-bottom">
+<header class="p-2 mb-2 border-bottom"  style="border-top: solid 3px #008a00;">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start flex-row-reverse">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">

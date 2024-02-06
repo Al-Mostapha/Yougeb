@@ -3,23 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>يُجيب  - كافة المواضيع</title>
-    <?php require_once 'template/css.tpl';?>
     @include('partial._css')
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{url("/feed")}}">
+    <meta property="og:url" content="{{url()->current()}}">
     <meta property="og:site_name" content="يُجيب - Yougeb">
     <meta property="og:image" itemprop="image primaryImageOfPage" content="{{asset("/image/logo/logo.svg")}}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:domain" content="www.yougeb.com">
     <meta name="twitter:title" property="og:title" itemprop="name" content="يُجيب - جميع المواضيع">
-    <meta name="twitter:description" property="og:description" itemprop="description" content="جميع المجالات والموضويع والاقسام داخل مجتمع يُجيب">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="جميع المجالات والموضويع والأقسام داخل مجتمع يُجيب">
     <meta name="description" content="جميع المجالات والموضويع والاقسام داخل مجتمع يُجيب"> 
     <meta name="keywords" content="جميع المجالات والموضويع والاقسام داخل مجتمع يُجيب">
   </head>
     <body>
-      @include('partial._header')
+      @include('partial._header_new')
       <div id="glo-container">
-          <div id="profile-header"> </div>
+        <div id="profile-header"> </div>
         <div id="body-wrapper" class="dir">
           @include('partial._left_col')
           <div id="mid-col">
@@ -27,7 +26,7 @@
               <div id="topic-list-header" class="glo-unit mid-unit">
                 <div class="top-wrapper">
                   <div class="top flex">
-                    <div class="ans-num" style="flex-grow: 2;">{{$totalTopicCount}} موضوع</div>
+                    <div class="ans-num" style="flex-grow: 2;">{{$Topics->total()}} موضوع</div>
                     <div class="blank" style="flex-grow: 20; "></div>
                     <div class="arrange" style="flex-grow: 5;">
                       <div class="flex ltr">
@@ -52,14 +51,14 @@
                     </div>
                   </div>
                   <div class="page-list">
-                    <?=$pageList?>
+                    {{$Topics->onEachSide(1)->links("partial._paginator")}}
                   </div>
                 </div>  
               </div>
               <div id="recomened-space-wrapper" class="glo-unit mid-unit recommend-space">
                 <div>
                   <div id="topic-list-wrapper" class="flex">
-                    @foreach($topics as $oneTopic)
+                    @foreach($Topics as $oneTopic)
                       @auth
                         {{-- $aFollower = selectFromTable(
                           "COUNT(*) AS num",
@@ -68,7 +67,7 @@
                           ["idu"=>$idU, "idt"=>$oneTopic["id_topic"]]) [0]["num"]
                           == 0? FALSE : TRUE ;    --}}
                       @endauth
-                      <div class="recommend-unit" data-id-topic="{{alphaID($oneTopic->id_topic)}}">
+                      <div class="recommend-unit" data-id-topic="{{$oneTopic->id_topic}}">
                         <div class="header">
                           <div class="header-wrapper flex">
                             <div class="left">
@@ -98,10 +97,10 @@
                             </h1>
                           </div>
                           <div class="bio">
-                            <p>{{mb_substr($oneTopic->brief, 0, 100)}}</p>
+                            <p class="text h-100">{{mb_substr($oneTopic->brief, 0, 100)}}</p>
                           </div>
                           <div class="follow-btn">
-                            <button class="{{$aFollower ? "topic-unfollow" : "topic-follow"}}" data-id-topic="{{alphaID($oneTopic->id_topic)}}">
+                            <button class="{{$aFollower ? "topic-unfollow" : "topic-follow"}}" data-id-topic="{{$oneTopic->id_topic}}">
                                 <label>{{$aFollower ? "الغاء المتابعة" : "متابعة"}}</label>
                                 <span></span>
                             </button>
@@ -112,7 +111,7 @@
                   </div>
                 </div>
                 <div class="page-list flex">
-                  <?=$pageList?>
+                  {{$Topics->onEachSide(1)->links("partial._paginator")}}
                 </div>
               </div>
             </div>

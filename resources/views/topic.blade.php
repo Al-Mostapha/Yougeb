@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="UTF-8">
-      <title>يُجيب  -  <?=$topic["title"]?></title>
+      <title>يُجيب  -  <?=$Topic["title"]?></title>
       @include("partial._css")
       <script type="application/ld+json">
       {
@@ -25,11 +25,11 @@
       <meta name="twitter:title" property="og:title" itemprop="name" content="{{$Topic->title}}">
       <meta name="twitter:description" property="og:description" itemprop="description" content="{{$Topic->long_brief}}">
       <meta name="description" content="{{$Topic->long_brief}}">
-      <meta name="keywords" content="{{implode(",", array_column($TopicTags, "title"))}}">
+      <meta name="keywords" content="{{$TopicTags->implode("title", ",")}}">
   </head>
   <body>
-    @include("partial._header")
-    <div id="glo-container" data-page="topicDetail" data-id-topic="{{$alphaID}}">
+    @include("partial._header_new")
+    <div id="glo-container" data-page="topicDetail" data-id-topic="{{$Topic->id_topic}}">
       <div id="profile-header"> </div>
       <div id="body-wrapper" class="dir">
         <div id="left-col">
@@ -111,7 +111,7 @@
             <div id="topic-header" class="glo-unit mid-unit">
               <div class="top-wrapper">
                 <div class="top flex">
-                  <div class="ans-num" style="flex-grow: 2;"><?= $totalTopicCount ?> سؤال</div>
+                  <div class="ans-num" style="flex-grow: 2;">{{$Feeds->total()}} سؤال</div>
                   <div class="blank" style="flex-grow: 20; "></div>
                   <div class="arrange" style="flex-grow: 5;">
                     <div class="flex ltr">
@@ -136,13 +136,13 @@
                   </div>
                 </div>
                 <div class="page-list">
-                    <?=$pageList?>
+                  {{$Feeds->onEachSide(1)->links("partial._paginator")}}
                 </div>
               </div>
             </div>
             <div class="glo-unit mid-unit">
                 <div  id="Que-List">
-                    @foreach($Feeds as $oneFeed)
+                  @foreach($Feeds as $oneFeed)
                     <div class="ans-wrapper feed-unit">
                       <div class="ans-content flex">
                           <div class="stats-container">
@@ -203,7 +203,7 @@
                 </div>
                 <div class="last-raw">
                     <div class="page-list">
-                        <?=$pageList?>
+                      {{$Feeds->onEachSide(1)->links("partial._paginator")}}
                     </div>
                 </div>
             </div>
