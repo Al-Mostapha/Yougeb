@@ -27,7 +27,7 @@
     <meta name="description" content="{{mb_substr($User->brief, 0, 160)}}"> 
   </head>
   <body>
-    @include("partial._header")
+    @include("partial._header_new")
     <div id="glo-container" data-page="profile" data-id-user="{{$User->id_user}}">
       <div id="profile-header">
           <div class="profile">
@@ -35,13 +35,15 @@
               <div class="user-avatar"> 
                 <div class="avatar">
                   <img src="{{asset("/$User->image")}}" alt="{{$User->full_name}}"/>
-                  @if($User->id_user == auth()->user()->id_user)
-                  <div class="avatar-edit">
-                    <div class="bg-black">
-                      <button></button>
+                  @auth
+                    @if($User->id_user == auth()->user()->id_user)
+                    <div class="avatar-edit">
+                      <div class="bg-black">
+                        <button></button>
+                      </div>
                     </div>
-                  </div>
-                  @endif
+                    @endif
+                  @endauth
                 </div>
                 <div class="user-profiles">
                   <ul>
@@ -59,27 +61,31 @@
                   <div class="data-wrapper">
                     <div class="wrapper">
                       <div class="name flex vc">
-                        <h1 id="old-full-name"><?=$User[0]["full_name"]?></h1>
-                        @if($User->id_user == auth()->user()->id_user)
-                        <label id="edite-full-name-wr" class="edit-btn">
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <img id="edite-full-name" src="{{asset("image/icon/edit.svg")}}"/>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                        </label>
-                        @endif
+                        <h1 id="old-full-name">{{ $User->full_name }}</h1>
+                        @auth
+                          @if($User->id_user == auth()->user()->id_user)
+                          <label id="edite-full-name-wr" class="edit-btn">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <img id="edite-full-name" src="{{asset("image/icon/edit.svg")}}"/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                          </label>
+                          @endif
+                        @endauth
                       </div>
                       <div class="mintion-name">
                           <h2>@{{$User->id_url}}</h2>
                       </div>
                       <div class="cridental flex vc"> 
                           <h3>Engineer, Musician, Photo/Videographer</h3>
-                          @if($User->id_user == auth()->user()->id_user)
-                          <label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <img src="{{asset("/image/icon/edit.svg")}}"/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                          </label>
-                          @endif
+                          @auth
+                            @if($User->id_user == auth()->user()->id_user)
+                            <label>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <img src="{{asset("/image/icon/edit.svg")}}"/>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
+                            @endif
+                          @endauth
                       </div>
                       <div class="bio">
                         <p>
@@ -87,32 +93,36 @@
                           For fun and sanity, I play guitar and write the occasional song ......
                         </p>
                         <a href="#">(قراءة المزيد)</a>
-                        @if($User->id_user == auth()->user()->id_user)
-                        <label>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <img src="{{asset("/image/icon/edit.svg")}}"/>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                        </label>
-                        @endif
+                        @auth
+                          @if($User->id_user == auth()->user()->id_user)
+                          <label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="{{asset("/image/icon/edit.svg")}}"/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                          </label>
+                          @endif
+                        @endauth
                       </div>
                     </div>
                   </div>
                   <div class="icon-wrapper">
                     <div class="icon-list">
-                        @if($User->id_user == auth()->user()->id_user)
-                        <div class="icon-unit pull-r"> 
-                          <button class="easy-bg-color">
-                            <label class="icon" style="background-image: url('{{url("/image/icon/follower.svg")}}')"></label>
-                            <label class="text">متابعة</label>
-                          </button> 
-                        </div>
-                        <div class="icon-unit pull-r"> 
-                          <button class="easy-bg-color">
-                            <label class="icon" style="background-image: url('{{url("/image/icon/notifyMe.svg")}}')"></label>
-                            <label class="text">اشعار</label>
-                          </button> 
-                        </div>
-                        @endif
+                        @auth
+                          @if($User->id_user == auth()->user()->id_user)
+                          <div class="icon-unit pull-r"> 
+                            <button class="easy-bg-color">
+                              <label class="icon" style="background-image: url('{{url("/image/icon/follower.svg")}}')"></label>
+                              <label class="text">متابعة</label>
+                            </button> 
+                          </div>
+                          <div class="icon-unit pull-r"> 
+                            <button class="easy-bg-color">
+                              <label class="icon" style="background-image: url('{{url("/image/icon/notifyMe.svg")}}')"></label>
+                              <label class="text">اشعار</label>
+                            </button> 
+                          </div>
+                          @endif
+                        @endauth
                         <div class="icon-unit pull-r"> 
                           <button class="easy-bg-color">
                             <label class="icon" style="background-image: url('{{url("/image/icon/askHim.svg")}}')"></label>
@@ -139,13 +149,15 @@
                               </p>
                               <div class="last-line">1933 - 2015</div>
                             </div>
-                            @if($User->id_user == auth()->user()->id_user)
-                            <label>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                              <img src="{{asset("/image/icon/edit.svg")}}"/>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                            </label>
-                            @endif
+                            @auth
+                              @if($User->id_user == auth()->user()->id_user)
+                              <label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <img src="{{asset("/image/icon/edit.svg")}}"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                              </label>
+                              @endif
+                            @endauth
                           </div>
                         </li>
                         <li>
@@ -157,13 +169,15 @@
                               </p>
                               <div class="last-line">1933 - 2015</div>
                             </div>
-                            @if($User->id_user == auth()->user()->id_user)
-                            <label>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                              <img src="{{asset("/image/icon/edit.svg")}}"/>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                            </label>
-                            @endif
+                            @auth
+                              @if($User->id_user == auth()->user()->id_user)
+                              <label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <img src="{{asset("/image/icon/edit.svg")}}"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                              </label>
+                              @endif
+                            @endauth
                           </div>
                         </li>
                         <li>
@@ -175,13 +189,15 @@
                               </p>
                               <div class="last-line">1933 - 2015</div>
                             </div>
-                            @if($User->id_user == auth()->user()->id_user)
-                            <label>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                              <img src="{{asset("/image/icon/edit.svg")}}"/>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                            </label>
-                            @endif
+                            @auth
+                              @if($User->id_user == auth()->user()->id_user)
+                              <label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <img src="{{asset("/image/icon/edit.svg")}}"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                              </label>
+                              @endif
+                            @endauth
                           </div>
                         </li>
                       </ul>
@@ -211,22 +227,22 @@
                 <div class="container">
                   <div class="top-wrapper">
                     <div class="top flex">
-                      <div class="ans-num" style="flex-grow: 2;"><?=$Count?> <?=$CountOF?></div>
+                      <div class="ans-num" style="flex-grow: 2;">{{$Count}} {{$CountOF}}</div>
                       <div class="blank" style="flex-grow: 20; "></div>
                       <div class="arrange" style="flex-grow: 5;">
                         <div class="flex ltr">
                           <div class="tabs flex">
-                            <div class="unit-arrange {{$QueOrder == env("FEED_FILTER_NEW") ? "selected" :""}}">
+                            <div class="unit-arrange {{$profileTo == env("FEED_FILTER_NEW") ? "selected" :""}}">
                               <div class="text">
                                 <a href="{{url()->current()}}{{$profileTo !=  env("PROFILE_SHOW_ANS") ? "/$profileTo" : ""}}" class="easy-bg-color">الاحدث</a>
                               </div>
                             </div>
-                            <div class="unit-arrange {{$QueOrder == env("FEED_FILTER_OLD") ? "selected" :""}}">
+                            <div class="unit-arrange {{$profileTo == env("FEED_FILTER_OLD") ? "selected" :""}}">
                               <div class="text">
                                 <a href="{{url()->current()}}{{$profileTo !=  env("PROFILE_SHOW_ANS") ? "/$profileTo" : ""}}?sort={{env("FEED_FILTER_OLD")}}" class="easy-bg-color">الاقدم</a>
                               </div>
                             </div>
-                            <div class="unit-arrange {{$QueOrder == env("FEED_FILTER_BEST") ? "selected" :""}}">
+                            <div class="unit-arrange {{$profileTo == env("FEED_FILTER_BEST") ? "selected" :""}}">
                               <div class="text">
                                 <a href="{{url()->current()}}{{$profileTo !=  env("PROFILE_SHOW_ANS") ? "/$profileTo" : ""}}?sort={{env("FEED_FILTER_BEST")}}" class="easy-bg-color">تصويت</a>
                               </div>

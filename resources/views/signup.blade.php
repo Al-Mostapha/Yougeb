@@ -21,9 +21,9 @@
       <div id="over-layer" class="hidden dir">
         <div id="alert-top-tip-wrapper"></div>
       </div>
-      @include('partial._header')
+      @include('partial._header_new')
       <div class="row" id="form-container">
-        <div class="login-page col-4">
+        <div class="login-page form-signin w-100 m-auto">
           <div class="form-login">
             <div class="logo-wrapper">
               <div class="logo">

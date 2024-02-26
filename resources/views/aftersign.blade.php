@@ -4,7 +4,7 @@
       @include('partial._css')
     </head>
     <body>
-        @include('partial._header')
+        @include('partial._header_new')
         <div id="form-container" class="dir">
             <div class="login-page">
                 <div class="form-login">

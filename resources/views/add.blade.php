@@ -6,7 +6,7 @@
     @include('partial._css')  
   </head>
     <body>
-      @include('partial._header')
+      @include('partial._header_new')
         <div id="glo-container">
           <div id="body-wrapper">
               <div id="mid-col" class="add-que-col">

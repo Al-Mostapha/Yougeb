@@ -27,6 +27,8 @@ Route::get('/', function () {
 Route::view('/signup', "signup")->name('signup');
 Route::view('/login', "login")->name('login')->middleware("guest");
 Route::view('/home', "home")->name('home')->middleware("auth");
+Route::view('/ask', "ask")->name('ask');
+
 Route::get("/@{mentionName}", [UserController::class, "index"]);
 Route::get("/topic", [TopicController::class, "index"]);
 Route::get("/topic/{idTopic}", [TopicController::class, "indexForTopic"]);

@@ -6,7 +6,7 @@
     @include('partial._css')
   </head>
   <body>
-    @include('partial._header')
+    @include('partial._header_new')
     <div id="glo-container" style="background-color: white">
       <div id="user-home">
         <div id="top-gridiant">

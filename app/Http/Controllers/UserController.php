@@ -10,7 +10,18 @@ class UserController extends Controller
     // Display a listing of the users
     public function index(string $mentionName)
     {
-        return view("user");
+        $user = User::where('mention_name', $mentionName)->first();
+        
+        if (!$user) {
+            abort(404);
+        }
+        
+        return view("user", [
+            "User" => $user,
+            "Count" => "0",
+            "CountOF" => "0",
+            "profileTo" => env("FEED_FILTER_NEW"),
+        ]);
     }
 
     // Show the form for creating a new user

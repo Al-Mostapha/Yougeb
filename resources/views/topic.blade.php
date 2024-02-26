@@ -73,7 +73,7 @@
                     </div>
                   </div>
                   <div class="brief-s-wrapper">
-                    <h1>{{$Topic->brief}}</h1>
+                    <h1 class="h5">{{$Topic->brief}}</h1>
                   </div>
                   <div class="brief-l-wrapper">
                     <p>{{$Topic->long_brief}}</p>
